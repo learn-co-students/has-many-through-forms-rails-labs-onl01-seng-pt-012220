@@ -1,0 +1,20 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.content %></p>
+<ul>
+    <% @post.categories.each do |c| %>
+        <li>
+        <%= c.name %>
+        </li>
+    <% end %>
+
+</ul>
+
+<%= render 'comment_form', comment: @post.comments.build %>
+
+<ul>
+    <% @post.comments.each do |cmnt| %>
+        <%= link_to cmnt.user.username, user_path(cmt.user) %>
+    <% end %>
+<li>
+</li>
+</ul>

@@ -10,9 +10,9 @@
 </ul>
 
 <ul>Comments
-    <% @post.unique_users.each do |u| %>
+    <% @post.unique_users do |u| %>
         <li>
-        <%= link_to u.username, user_path(u) %> says: <%= u.comments.last.content %>
+        <%= link_to u.username, user_path(u) %> says: <%= com.content %>
         </li>
     <% end %>  
 </ul>

@@ -3,6 +3,7 @@ class Comment < ActiveRecord::Base
   belongs_to :post
 
   def user_attributes=(user_attributes)
+    binding.pry
     self.user = User.find_or_create_by(user_attributes) unless user_attributes[:username].blank?
   end
 end

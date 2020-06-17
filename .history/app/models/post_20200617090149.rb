@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
   end
 
   def unique_users
+    binding.pry
     self.users.uniq
   end
 

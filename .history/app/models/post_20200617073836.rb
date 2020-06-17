@@ -7,15 +7,8 @@ class Post < ActiveRecord::Base
   
   def categories_attributes=(categories_attributes)
     categories_attributes.values.each do |category_attribute|
-      if !category_attribute[:name].blank?
-        category = Category.find_or_create_by(category_attribute)
-        self.categories << category
-      end
+      category = Category.find_or_create_by(category_attribute)
+      self.category_ids << category.id 
     end
   end
-
-  def unique_users
-    self.users.uniq
-  end
-
 end

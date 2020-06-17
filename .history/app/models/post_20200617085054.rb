@@ -14,8 +14,9 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def unique_users
-    self.users.uniq
+  def category_name_test(categories_attributes)
+    categories_attributes.values.each do |cat_att|
+      cat_att[:category].blank?
+    end
   end
-
 end

@@ -1,0 +1,14 @@
+
+<%= form_for post do |f| %>
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <%= f.label :user_id %>
+    <%= f.collection_select :user_id, User.all, :id, :username %>
+    <%= f.label :user %>
+    <%= f.fields_for :user, comment.build_user do |user_fields| %>
+        <%= user_fields.text_field :username %>
+    <% end %>
+    <% f.submit %>
+<% end %>

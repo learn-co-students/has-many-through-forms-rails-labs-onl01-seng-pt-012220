@@ -1,7 +1,7 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
 
-<ul>Categories
+<ul>
     <% @post.categories.each do |c| %>
         <li>
         <%= c.name %>
@@ -9,22 +9,14 @@
     <% end %>  
 </ul>
 
-<ul>Comments
-    <% @post.unique_users.each do |u| %>
-        <li>
-        <%= link_to u.username, user_path(u) %> says: <%= u.comments.last.content %>
-        </li>
-    <% end %>  
-</ul>
-
-<%= form_for @post.comments.build do |f| %>
+<%= form_for @comment do |f| %>
     <%= f.hidden_field :post_id, value: @post.id %>
     <%= f.label :content %><br />
     <%= f.text_area :content %><br />
     <%= f.label :user_id %><br />
-    <%= f.collection_select :user_id, User.all, :id, :username, {include_blank: true} %><br />
+    <%= f.collection_select :user_id, User.all, :id, :username %><br />
     <%= f.label :user %><br />
-    <%= f.fields_for :user, User.new do |user_fields| %>
+    <%= f.fields_for :user, @comment.build_user do |user_fields| %>
         <%= user_fields.text_field :username %>
     <% end %><br />
     <%= f.submit %>

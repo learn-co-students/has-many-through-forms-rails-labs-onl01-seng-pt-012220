@@ -6,16 +6,6 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :categories
   
   def categories_attributes=(categories_attributes)
-    categories_attributes.values.each do |category_attribute|
-      if !category_attribute[:name].blank?
-        category = Category.find_or_create_by(category_attribute)
-        self.categories << category
-      end
-    end
+    binding.pry
   end
-
-  def unique_users
-    self.users.uniq
-  end
-
 end
